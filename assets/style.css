@@ -39,6 +39,7 @@ ul.navbar {
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;
+  width: 800px;
 }
 
 ul.navbar li {
@@ -100,6 +101,7 @@ ul.news-list li a:hover {
 
 @media screen and (max-width: 800px) {
   ul.navbar, ul.news-list {
-    display: block
+    display: block;
+    width: 100%;
   }
 }
