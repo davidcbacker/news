@@ -81,7 +81,7 @@ def generate_news_html():
     </head>
     <body>
         <a href="business.html">Business News</a>
-        <h2><a href="https://news.google.com/home?hl=en-US&gl=US&ceid=US:en">Google News</a></h2>
+        <h2 id="google-news"><a href="https://news.google.com/home?hl=en-US&gl=US&ceid=US:en">Google News</a></h2>
         <p class="last-updated">{google_news_last_updated if google_news_last_updated else ''}</p>
         <ul>\n"""
 
@@ -120,7 +120,7 @@ def generate_news_html():
     html += "        </ul>\n"
 
     # build the MIT Technology Review News section
-    html += f"""        <h2><a href="https://www.technologyreview.com/">MIT Technology Review</a></h2>
+    html += f"""        <h2 id="mit-technology-review"><a href="https://www.technologyreview.com/">MIT Technology Review</a></h2>
         <p class="last-updated">{mit_tech_review_last_updated if mit_tech_review_last_updated else ''}</p>
         <ul>\n"""
     for item in mit_tech_review_items[:MAX_NEWS_ITEMS]:
@@ -128,7 +128,7 @@ def generate_news_html():
     html += "        </ul>\n"
 
     # build the Reuters News section
-    html += f"""        <h2><a href="https://www.reuters.com/">Reuters</a></h2>
+    html += f"""        <h2 id="reuters"><a href="https://www.reuters.com/">Reuters</a></h2>
         <p class="last-updated">{reuters_last_updated if reuters_last_updated else ''}</p>
         <ul>\n"""
     for item in reuters_items[:MAX_NEWS_ITEMS_BIG]:
@@ -154,7 +154,7 @@ def generate_news_html():
     </head>
     <body>
         <a href="index.html">Top News</a>
-        <h2><a href="https://www.bloomberg.com/">Bloomberg</a></h2>
+        <h2 id="bloomberg"><a href="https://www.bloomberg.com/">Bloomberg</a></h2>
         <p class="last-updated">{bloomberg_last_updated if bloomberg_last_updated else ''}</p>
         <ul>\n"""
     for item in bloomberg_items[:MAX_NEWS_ITEMS]:
@@ -162,7 +162,7 @@ def generate_news_html():
     html_business += "        </ul>\n"
 
     # build the CNBC News section
-    html_business += f"""        <h2><a href="https://www.cnbc.com/">CNBC</a></h2>
+    html_business += f"""        <h2 id="cnbc"><a href="https://www.cnbc.com/">CNBC</a></h2>
         <p class="last-updated">{cnbc_last_updated if cnbc_last_updated else ''}</p>
         <ul>\n"""
     for item in cnbc_items[:MAX_NEWS_ITEMS]:
@@ -170,7 +170,7 @@ def generate_news_html():
     html_business += "        </ul>\n"
 
     # build the Fox Business News section
-    html_business += f"""        <h2><a href="https://www.foxbusiness.com/">Fox Business</a></h2>
+    html_business += f"""        <h2 id="fox-business"><a href="https://www.foxbusiness.com/">Fox Business</a></h2>
         <p class="last-updated">{fox_business_last_updated if fox_business_last_updated else ''}</p>
         <ul>\n"""
     for item in fox_business_items[:MAX_NEWS_ITEMS]:
