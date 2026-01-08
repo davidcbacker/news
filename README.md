@@ -1,5 +1,5 @@
-# news-reader
+# news
 
 News reader parsed from RSS.
 
-[davidcbacker.github.io/news-reader](https://davidcbacker.github.io/news-reader)
+[davidcbacker.github.io/news-reader](https://davidcbacker.github.io/news)
