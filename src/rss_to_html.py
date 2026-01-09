@@ -187,9 +187,9 @@ def generate_google_news_html_section(section_title, section_url, feed_url, max_
         item_description = item.get("description", "")
         item_secondary_sources_anchors = extract_secondary_sources_from_description(item_description)
         if item_secondary_sources_anchors:
-            google_news_html += f"            <li><a href=\"{item['link']}\" title=\"{item['title']}\" target=\"_blank\"><strong>{item['title']}</strong></a> {' '.join(item_secondary_sources_anchors)}</li>\n"
+            google_news_html += f"            <li><a href=\"{item['link']}\" title=\"{item_title}\" target=\"_blank\"><strong>{item_title}</strong></a> {' '.join(item_secondary_sources_anchors)}</li>\n"
         else:
-            google_news_html += f"            <li><a href=\"{item['link']}\" title=\"{item['title']}\" target=\"_blank\"><strong>{item['title']}</strong></a></li>\n"
+            google_news_html += f"            <li><a href=\"{item['link']}\" title=\"{item_title}\" target=\"_blank\"><strong>{item_title}</strong></a></li>\n"
     google_news_html += "        </ul>\n"
     return google_news_html
 
