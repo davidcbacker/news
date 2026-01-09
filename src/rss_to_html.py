@@ -353,7 +353,7 @@ def generate_us_news_html(max_news_items):
         news_last_updated=cnbc_us_last_updated,
         max_news_items=max_news_items
     )
-    
+
     # build the CNN U.S. News section
     us_news_html += generate_html_section(
         section_title="CNN U.S.",
