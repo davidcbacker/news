@@ -28,5 +28,5 @@ jobs:
       - name: Run csslint
         run: |
           csslint \
-            --ignore=import-ie-limit,order-alphabetical \
+            --ignore=box-sizing \
             assets/*.css
