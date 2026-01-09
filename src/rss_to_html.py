@@ -253,7 +253,9 @@ def generate_html_section(section_title, section_url, feed_url, max_news_items):
         <p class="last-updated">{news_last_updated if news_last_updated else ''}</p>
         <ul class=\"news-list\">\n"""
     for item in news_items[:max_news_items]:
-        html += f"            <li><a href=\"{item['link']}\" title=\"{item['description']}\" target=\"_blank\"><strong>{item['title']}</strong><br>{item['description']}</a></li>\n"
+        item_title = clean_up_html_string(item.get("title", ""))
+        item_description = clean_up_html_string(item.get("description", ""))
+        html += f"            <li><a href=\"{item['link']}\" title=\"{item_description}\" target=\"_blank\"><strong>{item_title}</strong><br>{item_description}</a></li>\n"
     html += "        </ul>\n"
     return html
 
