@@ -481,6 +481,11 @@ def write_content_to_file(content: str, filename: str):
 
 
 def generate_index_page(max_news_items):
+    """
+    Generate the index (Top News) HTML page.
+    Args:
+        max_news_items (int): Maximum number of news items to display per section.
+    """
     filename="output/index.html"
     write_content_to_file(
         generate_index_html(max_news_items=max_news_items),
@@ -488,6 +493,11 @@ def generate_index_page(max_news_items):
 
 
 def generate_us_news_page(max_news_items):
+    """
+    Generate the U.S. News HTML page.
+    Args:
+        max_news_items (int): Maximum number of news items to display per section.
+    """
     filename="output/us.html"
     write_content_to_file(
         generate_us_news_html(max_news_items=max_news_items),
@@ -495,6 +505,11 @@ def generate_us_news_page(max_news_items):
 
 
 def generate_world_news_page(max_news_items):
+    """
+    Generate the World News HTML page.
+    Args:
+        max_news_items (int): Maximum number of news items to display per section.
+    """
     filename="output/world.html"
     write_content_to_file(
         generate_world_news_html(max_news_items=max_news_items),
@@ -502,6 +517,11 @@ def generate_world_news_page(max_news_items):
 
 
 def generate_business_page(max_news_items):
+    """
+    Generate the Business HTML page.
+    Args:
+        max_news_items (int): Maximum number of news items to display per section.
+    """
     filename="output/business.html"
     write_content_to_file(
         generate_business_html(max_news_items=max_news_items),
@@ -509,6 +529,11 @@ def generate_business_page(max_news_items):
 
 
 def generate_security_page(max_news_items):
+    """
+    Generate the Security HTML page.
+    Args:
+        max_news_items (int): Maximum number of news items to display per section.
+    """
     filename="output/security.html"
     write_content_to_file(
         generate_security_html(max_news_items=max_news_items),
@@ -516,6 +541,11 @@ def generate_security_page(max_news_items):
 
 
 def generate_technology_page(max_news_items):
+    """
+    Generate the Technology HTML page.
+    Args:
+        max_news_items (int): Maximum number of news items to display per section.
+    """
     filename="output/technology.html"
     write_content_to_file(
         generate_technology_html(max_news_items=max_news_items),
