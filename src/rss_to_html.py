@@ -455,7 +455,7 @@ def generate_technology_html(max_news_items):
     technology_html += generate_html_section(
         section_title="MIT Technology Review",
         section_url="https://www.technologyreview.com/",
-        feedurl=mit_tech_review_rss_url,
+        feed_url=mit_tech_review_rss_url,
         max_news_items=max_news_items
     )
     technology_html += generate_reddit_technology_html_section(
