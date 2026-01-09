@@ -402,13 +402,13 @@ def generate_security_html(max_news_items):
     security_html += generate_html_section(
         section_title="Talkback.sh News",
         section_url="https://talkback.sh/",
-        feed_url=,
+        feed_url=talkback_news_rss_url,
         max_news_items=max_news_items
     )
     security_html += generate_html_section(
         section_title="Talkback.sh Technical",
         section_url="https://talkback.sh/",
-        feed_url=hacker_news_rss_url,
+        feed_url=talkback_technical_rss_url,
         max_news_items=max_news_items
     )
     security_html += generate_html_section(
