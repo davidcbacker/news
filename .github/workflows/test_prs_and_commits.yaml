@@ -1,0 +1,41 @@
+name: PRs and commits to master
+
+on :
+  push:
+    branches: master
+  pull_request:
+    branches: master
+  workflow_dispatch:
+
+jobs:
+  check_css:
+    name: Check CSS code
+    uses: ./.github/workflows/check_css.yaml
+
+  check_markdown:
+    name: Check Markdown code
+    uses: ./.github/workflows/check_markdown.yaml
+
+  check_python:
+    name: Check Python code
+    uses: ./.github/workflows/check_python.yaml
+
+  build_website:
+    name: Build Website
+    needs: >-
+      check_css,
+      check_markdown,
+      check_python
+    uses: ./.github/workflows/build_website.yaml
+  
+  check_html_output:
+    name: Check HTML code
+    needs: build_website
+    uses: ./.github/workflows/check_html.yaml
+
+  deploy_website:
+    name: Deploy from artifact
+    needs: check_html_output
+    if: ${{ github.ref == 'refs/heads/master' }}
+    uses: ./.github/workflows/deploy_website.yaml
+
