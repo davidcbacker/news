@@ -85,8 +85,8 @@ def extract_secondary_sources_from_description(description: str):
         if len(title_publisher_split) != 2:
             print(f"Unexpected source format during title-publisher split: {source}")
             continue
-        title = title_publisher_split[0]
-        publisher = title_publisher_split[1]
+        title = clean_up_html_string(title_publisher_split[0])
+        publisher = clean_up_html_string(title_publisher_split[1])
         item_secondary_sources_anchors.append(
             f'<a href="{url}" title="{title}" target="_blank">[{publisher}]</a>'
         )
@@ -119,11 +119,11 @@ def generate_html_closing():
     Returns:
         str: The closing HTML string.
     """
-    html_closing = """    </body>
-    <footer>
+    html_closing = """        <footer>
         <p>Author: David C. Backer</p>
         <p><a href="https://github.com/davidcbacker/news">Source code</a></p>
-    </footer>
+        </footer>
+    </body>
 </html>\n"""
     return html_closing
 
@@ -154,6 +154,19 @@ def generate_top_nav_bar(current_page: str):
     return nav_bar
 
 
+def clean_up_html_string(html_string: str) -> str:
+    """
+    Clean up an HTML string by removing unwanted substrings.
+    Args:
+        html_string (str): The HTML string to clean up.
+    Returns:
+        str: The cleaned-up HTML string.
+    """
+    html_string = html_string.replace('"', "'")
+    html_string = html_string.replace("&", "&amp;")
+    return html_string
+
+
 def generate_google_news_html_section(section_title, section_url, feed_url, max_news_items):
     """
     Generate the HTML section for Google News items.
@@ -170,12 +183,13 @@ def generate_google_news_html_section(section_title, section_url, feed_url, max_
         <p class="last-updated">{google_news_last_updated if google_news_last_updated else ''}</p>
         <ul class=\"news-list\">\n"""
     for item in google_news_items[:max_news_items]:
+        item_title = clean_up_html_string(item.get("title", ""))
         item_description = item.get("description", "")
         item_secondary_sources_anchors = extract_secondary_sources_from_description(item_description)
         if item_secondary_sources_anchors:
-            google_news_html += f"            <li><a href=\"{item['link']}\" title=\"{item['title']}\" target=\"_blank\"><strong>{item['title']}</strong></a> {' '.join(item_secondary_sources_anchors)}</li>\n"
+            google_news_html += f"            <li><a href=\"{item['link']}\" title=\"{item_title}\" target=\"_blank\"><strong>{item_title}</strong></a> {' '.join(item_secondary_sources_anchors)}</li>\n"
         else:
-            google_news_html += f"            <li><a href=\"{item['link']}\" title=\"{item['title']}\" target=\"_blank\"><strong>{item['title']}</strong></a></li>\n"
+            google_news_html += f"            <li><a href=\"{item['link']}\" title=\"{item_title}\" target=\"_blank\"><strong>{item_title}</strong></a></li>\n"
     google_news_html += "        </ul>\n"
     return google_news_html
 
@@ -196,10 +210,11 @@ def generate_reuters_html_section(section_title, section_url, feed_url, max_news
         <p class="last-updated">{reuters_last_updated if reuters_last_updated else ''}</p>
         <ul class=\"news-list\">\n"""
     for item in reuters_items[:max_news_items]:
+        item_title = clean_up_html_string(item.get("title", ""))
         # remove ' - Reuters' from the title
-        if item['title'].endswith(" [Reuters]"):
-            item['title'] = item['title'][:-10]
-        reuters_html += f"            <li><a href=\"{item['link']}\" target=\"_blank\"><strong>{item['title']}</strong></a></li>\n"
+        if item_title.endswith(" [Reuters]"):
+            item_title = item_title[:-10]
+        reuters_html += f"            <li><a href=\"{item['link']}\" target=\"_blank\"><strong>{item_title}</strong></a></li>\n"
     reuters_html += "        </ul>\n"
     return reuters_html
 
@@ -239,7 +254,9 @@ def generate_html_section(section_title, section_url, feed_url, max_news_items):
         <p class="last-updated">{news_last_updated if news_last_updated else ''}</p>
         <ul class=\"news-list\">\n"""
     for item in news_items[:max_news_items]:
-        html += f"            <li><a href=\"{item['link']}\" title=\"{item['description']}\" target=\"_blank\"><strong>{item['title']}</strong><br>{item['description']}</a></li>\n"
+        item_title = clean_up_html_string(item.get("title", ""))
+        item_description = clean_up_html_string(item.get("description", ""))
+        html += f"            <li><a href=\"{item['link']}\" title=\"{item_description}\" target=\"_blank\"><strong>{item_title}</strong><br>{item_description}</a></li>\n"
     html += "        </ul>\n"
     return html
 
