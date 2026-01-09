@@ -415,7 +415,7 @@ def generate_business_html(max_news_items):
     google_news_business_last_updated = None
     google_news_business_items, google_news_business_last_updated = parse_rss_feed(google_news_business_rss_url)
     print(f"Fetched {len(google_news_business_items)} items from Google News Business.")
-    
+
     bloomberg_rss_url = "https://feeds.bloomberg.com/news.rss"
     bloomberg_items = []
     bloomberg_last_updated = None
