@@ -119,11 +119,11 @@ def generate_html_closing():
     Returns:
         str: The closing HTML string.
     """
-    html_closing = """    </body>
-    <footer>
+    html_closing = """        <footer>
         <p>Author: David C. Backer</p>
         <p><a href="https://github.com/davidcbacker/news">Source code</a></p>
-    </footer>
+        </footer>
+    </body>
 </html>\n"""
     return html_closing
 
