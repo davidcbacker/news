@@ -269,7 +269,6 @@ def generate_index_html(max_news_items):
     index_html = generate_html_base("Top News")
     index_html += generate_top_nav_bar("index.html")
 
-    # build the Google News section with secondary sources
     index_html += generate_google_news_html_section(
         section_title="Google News",
         section_url="https://news.google.com/home?hl=en-US&gl=US&ceid=US:en",
@@ -278,7 +277,6 @@ def generate_index_html(max_news_items):
         max_news_items=max_news_items
     )
 
-    # build the Reuters News section
     index_html += generate_reuters_html_section(
         section_title="Reuters",
         section_url="https://www.reuters.com",
@@ -326,16 +324,14 @@ def generate_us_news_html(max_news_items):
     us_news_html = generate_html_base("U.S. News")
     us_news_html += generate_top_nav_bar("us.html")
 
-    # build the Google News US section
     us_news_html += generate_google_news_html_section(
         section_title="Google News - U.S.",
-        section_url="https://news.google.com/rss/topics/CAAqIggKIhxDQkFTRHdvSkwyMHZNRGxqTjNjd0VnSmxiaWdBUAE",
+        section_url="https://news.google.com/topics/CAAqIggKIhxDQkFTRHdvSkwyMHZNRGxqTjNjd0VnSmxiaWdBUAE",
         google_news_items=google_news_us_items,
         google_news_last_updated=google_news_us_last_updated,
         max_news_items=max_news_items
     )
 
-    # build the Fox Weather News section
     us_news_html += generate_html_section(
         section_title="Fox Weather",
         section_url="https://www.foxweather.com/",
@@ -344,8 +340,6 @@ def generate_us_news_html(max_news_items):
         max_news_items=max_news_items
     )
 
-
-    # build the CNBC U.S. News section
     us_news_html += generate_html_section(
         section_title="CNBC U.S.",
         section_url="https://www.cnbc.com/us-news/",
@@ -354,7 +348,6 @@ def generate_us_news_html(max_news_items):
         max_news_items=max_news_items
     )
 
-    # build the CNN U.S. News section
     us_news_html += generate_html_section(
         section_title="CNN U.S.",
         section_url="https://www.cnn.com/us",
@@ -391,7 +384,7 @@ def generate_world_news_html(max_news_items):
 
     world_news_html += generate_google_news_html_section(
         section_title="Google News - World",
-        section_url="https://news.google.com/rss/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGx1YlY4U0FtVnVHZ0pWVXlnQVAB",
+        section_url="https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGx1YlY4U0FtVnVHZ0pWVXlnQVAB",
         google_news_items=google_news_world_items,
         google_news_last_updated=google_news_world_last_updated,
         max_news_items=max_news_items
@@ -416,6 +409,13 @@ def generate_business_html(max_news_items):
     Returns:
         str: The complete HTML for the Business News page.
     """
+
+    google_news_business_rss_url = "https://news.google.com/rss/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGx6TVdZU0FtVnVHZ0pWVXlnQVAB"
+    google_news_business_items = []
+    google_news_business_last_updated = None
+    google_news_business_items, google_news_business_last_updated = parse_rss_feed(google_news_business_rss_url)
+    print(f"Fetched {len(google_news_business_items)} items from Google News Business.")
+    
     bloomberg_rss_url = "https://feeds.bloomberg.com/news.rss"
     bloomberg_items = []
     bloomberg_last_updated = None
@@ -436,6 +436,14 @@ def generate_business_html(max_news_items):
 
     business_html = generate_html_base("Business")
     business_html += generate_top_nav_bar("business.html")
+
+    business_html += generate_google_news_html_section(
+        section_title="Google News - Business",
+        section_url="https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGx6TVdZU0FtVnVHZ0pWVXlnQVAB",
+        google_news_items=google_news_business_items,
+        google_news_last_updated=google_news_business_last_updated,
+        max_news_items=max_news_items
+    )
 
     business_html += generate_html_section(
         section_title="Bloomberg",
@@ -473,6 +481,7 @@ def generate_security_html(max_news_items):
     Returns:
         str: The complete HTML for the Security News page.
     """
+
     hacker_news_rss_url = "https://feeds.feedburner.com/TheHackersNews"
     hacker_news_items = []
     hacker_news_last_updated = None
@@ -494,7 +503,6 @@ def generate_security_html(max_news_items):
     security_html = generate_html_base("Security")
     security_html += generate_top_nav_bar("security.html")
 
-    # build the Hacker News section
     security_html += generate_html_section(
         section_title="Hacker News",
         section_url="https://thehackernews.com/",
@@ -503,7 +511,6 @@ def generate_security_html(max_news_items):
         max_news_items=max_news_items
     )
 
-    # build the SANS Internet Storm Center News section
     security_html += generate_html_section(
         section_title="SANS Internet Storm Center",
         section_url="https://isc.sans.edu/",
@@ -512,7 +519,6 @@ def generate_security_html(max_news_items):
         max_news_items=max_news_items
     )
 
-    # build the Krebs on Security News section
     security_html += generate_html_section(
         section_title="Krebs on Security",
         section_url="https://krebsonsecurity.com/",
@@ -533,6 +539,12 @@ def generate_technology_html(max_news_items):
     Returns:
         str: The complete HTML for the Technology News page.
     """
+    google_news_technology_rss_url = "https://news.google.com/rss/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGRqTVhZU0FtVnVHZ0pWVXlnQVAB"
+    google_news_technology_items = []
+    google_news_technology_last_updated = None
+    google_news_technology_items, google_news_technology_last_updated = parse_rss_feed(google_news_technology_rss_url)
+    print(f"Fetched {len(google_news_technology_items)} items from Google News Technology.")
+
     mit_tech_review_rss_url = "https://www.technologyreview.com/feed"
     mit_tech_review_items = []
     mit_tech_review_last_updated = None
@@ -548,7 +560,14 @@ def generate_technology_html(max_news_items):
     technology_html = generate_html_base("Technology")
     technology_html += generate_top_nav_bar("technology.html")
 
-    # build the MIT Technology Review News section
+    technology_html += generate_google_news_html_section(
+        section_title="Google News - Technology",
+        section_url="https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGRqTVhZU0FtVnVHZ0pWVXlnQVAB",
+        google_news_items=google_news_technology_items,
+        google_news_last_updated=google_news_technology_last_updated,
+        max_news_items=max_news_items
+    )
+
     technology_html += generate_html_section(
         section_title="MIT Technology Review",
         section_url="https://www.technologyreview.com/",
@@ -557,7 +576,6 @@ def generate_technology_html(max_news_items):
         max_news_items=max_news_items
     )
 
-    # build the Reddit Technology News section
     technology_html += generate_reddit_technology_html_section(
         section_title="Reddit Technology",
         section_url="https://www.reddit.com/r/technology/",
@@ -585,6 +603,7 @@ def generate_news_pages():
     Generate all news HTML pages and write them to the output directory.
     """
     max_news_items = 18
+    max_news_items_small = 10
     max_news_items_big = 30
 
     # Prepare the output directory
@@ -600,10 +619,10 @@ def generate_news_pages():
     world_news_html = generate_world_news_html(max_news_items=max_news_items_big)
     write_content_to_file(world_news_html, "output/world.html")
 
-    business_html = generate_business_html(max_news_items=max_news_items)
+    business_html = generate_business_html(max_news_items=max_news_items_small)
     write_content_to_file(business_html, "output/business.html")
 
-    security_html = generate_security_html(max_news_items=max_news_items)
+    security_html = generate_security_html(max_news_items=max_news_items_small)
     write_content_to_file(security_html, "output/security.html")
 
     technology_html = generate_technology_html(max_news_items=max_news_items)
