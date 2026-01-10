@@ -13,14 +13,14 @@ jobs:
     steps:
       - name: Download output artifact
         id: download_artifact
-        continue-on-error: true
+        # continue-on-error: true
         uses: actions/download-artifact@v7
         with:
           name: website_build_output
           path: output
-      - name: If artifact download fails, build output
-        if: steps.download_artifact.outcome == 'failure'
-        uses: ./.github/workflows/website_build.yaml
+      # - name: If artifact download fails, build output
+      #   if: steps.download_artifact.outcome == 'failure'
+      #   uses: ./.github/workflows/website_build.yaml
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
         with:
