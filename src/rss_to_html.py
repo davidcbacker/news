@@ -109,6 +109,7 @@ def generate_html_base(title: str):
     <title>{title}</title>
     <link rel=\"stylesheet\" href=\"style.css\">
 </head>
+    <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.cssn\">
 <body>\n"""
     return html_base
 
@@ -144,7 +145,10 @@ def generate_top_nav_bar(current_page: str):
         ("security.html", "Security"),
         ("technology.html", "Technology")
     ]
-    nav_bar = "        <ul class=\"navbar\">\n"
+    nav_bar = """        <ul class=\"navbar\">
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+          <i class="fa fa-bars"></i>
+        </a>\n"""
     for page_file, page_name in pages:
         if page_file == current_page:
             nav_bar += f"            <li class=\"active\"><a href=\"{page_file}\">{page_name}</a></li>\n"
