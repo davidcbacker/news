@@ -125,9 +125,13 @@ ul.news-list li a:hover {
     margin: 0
   }
 
+  ul.navbar div#navbar-links {
+    display: none;
+  }
+
   ul.navbar li {
     border-radius: 0;
-    display: none;
+
     margin-left: auto;
     margin-right: auto;
     width: 250px;
