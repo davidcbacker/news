@@ -149,7 +149,7 @@ def generate_top_nav_bar(current_page: str):
         <a class=\"icon\" href=\"javascript:void(0);\" class=\"icon\" onclick=\"myFunction()\">
           <i class=\"fa fa-bars\"></i>
         </a>
-        <div class=\"navbar-links\"\n"""
+        <div id=\"navbar-links\"\n"""
     for page_file, page_name in pages:
         if page_file == current_page:
             nav_bar += f"            <li class=\"active\"><a href=\"{page_file}\">{page_name}</a></li>\n"
