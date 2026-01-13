@@ -146,8 +146,8 @@ def generate_top_nav_bar(current_page: str):
         ("technology.html", "Technology")
     ]
     nav_bar = """        <ul class=\"navbar\">
-        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-          <i class="fa fa-bars"></i>
+        <a class=\"icon\" href=\"javascript:void(0);\" class=\"icon\" onclick=\"myFunction()\">
+          <i class=\"fa fa-bars\"></i>
         </a>\n"""
     for page_file, page_name in pages:
         if page_file == current_page:
