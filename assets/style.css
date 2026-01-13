@@ -56,6 +56,10 @@ ul.navbar li {
   height: 3em;
 }
 
+ul.navbar a.icon {
+  background: black;
+}
+
 ul.navbar li.active {
   background-color: white;
 }
@@ -123,6 +127,7 @@ ul.news-list li a:hover {
 
   ul.navbar li {
     border-radius: 0;
+    display: none;
     margin-left: auto;
     margin-right: auto;
     width: 250px;
