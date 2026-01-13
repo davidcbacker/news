@@ -29,7 +29,7 @@ h2 a:hover {
   font-style: italic;
 }
 
-ul.navbar {
+div.navbar {
   background-color: black;
   display: flex;
   flex-wrap: nowrap;
@@ -43,7 +43,7 @@ ul.navbar {
   width: 781px;
 }
 
-ul.navbar li {
+div.navbar li {
   background-color: black;
   border-radius: 10px;
   box-sizing: border-box;
@@ -56,15 +56,15 @@ ul.navbar li {
   height: 3em;
 }
 
-ul.navbar a.icon {
+div.navbar a.icon {
   background: black;
 }
 
-ul.navbar li.active {
+div.navbar li.active {
   background-color: white;
 }
 
-ul.navbar li a {
+div.navbar li a {
   color: white;
   display: block;
   font-weight: bold;
@@ -77,7 +77,7 @@ ul.navbar li a {
   height: 100%;
 }
 
-ul.navbar li.active a {
+div.navbar li.active a {
   color: #222;
 }
 
@@ -114,7 +114,7 @@ ul.news-list li a:hover {
 }
 
 @media screen and (max-width: 800px) {
-  ul.navbar, ul.news-list {
+  div.navbar, ul.news-list {
     display: block;
     width: 100%;
   }
@@ -125,11 +125,11 @@ ul.news-list li a:hover {
     margin: 0
   }
 
-  ul.navbar div#navbar-links {
+  div.navbar div#navbar-links {
     display: none;
   }
 
-  ul.navbar li {
+  div.navbar li {
     border-radius: 0;
 
     margin-left: auto;
