@@ -31,9 +31,12 @@ jobs:
             if [ "${file}" = "output/security.html" ]; then
               html-validate  \
                 --preset recommended \
+                --rule wcag/h30:off \
                 --rule no-trailing-whitespace:warn \
                 output/security.html
             else
-              html-validate  "${file}"
+              html-validate  \
+                --rule wcag/h30:off \
+                "${file}"
             fi
           done

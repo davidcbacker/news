@@ -43,7 +43,19 @@ ul.navbar {
   width: 781px;
 }
 
-ul.navbar li {
+ul.navbar a.icon {
+  background: black;
+  position: absolute;
+  left: 0;
+  color: white;
+  display: none;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  top: 0;
+}
+
+ul.navbar li.navbar-link {
   background-color: black;
   border-radius: 10px;
   box-sizing: border-box;
@@ -56,11 +68,7 @@ ul.navbar li {
   height: 3em;
 }
 
-ul.navbar li.active {
-  background-color: white;
-}
-
-ul.navbar li a {
+ul.navbar li.navbar-link a {
   color: white;
   display: block;
   font-weight: bold;
@@ -73,7 +81,11 @@ ul.navbar li a {
   height: 100%;
 }
 
-ul.navbar li.active a {
+ul.navbar li#active-navbar-link {
+  background-color: white;
+}
+
+ul.navbar li#active-navbar-link a {
   color: #222;
 }
 
@@ -115,16 +127,33 @@ ul.news-list li a:hover {
     width: 100%;
   }
 
-  ul.news-list li {
-    border-radius: 0;
-    padding: 1em;
-    margin: 0
+  ul.navbar {
+    align-items: center;
+    padding: 0;
   }
 
-  ul.navbar li {
+  ul.navbar a.icon {
+    display: block;
+  }
+
+  ul.navbar li.navbar-link {
+    align-items: center;
     border-radius: 0;
+    display: none;
     margin-left: auto;
     margin-right: auto;
     width: 250px;
+  }
+
+  ul.news-list li {
+    border-radius: 0;
+    padding: 1em;
+    margin: 0;
+  }
+}
+
+@media screen and (min-width: 801px) {
+  ul.navbar li.navbar-link {
+    display: block;
   }
 }
