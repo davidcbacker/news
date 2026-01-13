@@ -125,7 +125,7 @@ ul.news-list li a:hover {
     margin: 0
   }
 
-  div.navbar div#navbar-links {
+  div.navbar ul#navbar-links {
     display: none;
   }
 
