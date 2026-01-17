@@ -171,6 +171,7 @@ def clean_up_html_string(html_string: str) -> str:
     html_string = html_string.replace('"', "'")
     html_string = html_string.replace("&", "&amp;")
     html_string = html_string.rsplit(" (.gov)", 1)[0]
+    html_string = html_string.strip()
     return html_string
 
 
