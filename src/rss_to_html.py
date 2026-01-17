@@ -146,17 +146,16 @@ def generate_top_nav_bar(current_page: str):
         ("security.html", "Security"),
         ("technology.html", "Technology")
     ]
-    nav_bar = """        <ul class=\"navbar\">
+    nav_bar = """        <div class=\"navbar\">
             <a class=\"icon\" href=\"javascript:void(0);\" onclick=\"myFunction()\">
                 <i class=\"fa fa-bars\"></i>
             </a>\n"""
-
     for page_file, page_name in pages:
         if page_file == current_page:
-            nav_bar += f"            <li class=\"navbar-link\" id=\"active-navbar-link\"><a href=\"{page_file}\">{page_name}</a></li>\n"
+            nav_bar += f"            <div class=\"navbar-link\" id=\"active-navbar-link\"><a href=\"{page_file}\">{page_name}</a></div>\n"
         else:
-            nav_bar += f"            <li class=\"navbar-link\"><a href=\"{page_file}\">{page_name}</a></li>\n"
-    nav_bar += "        </ul>\n"
+            nav_bar += f"            <div class=\"navbar-link\"><a href=\"{page_file}\">{page_name}</a></div>\n"
+    nav_bar += "        </div>\n"
     return nav_bar
 
 
