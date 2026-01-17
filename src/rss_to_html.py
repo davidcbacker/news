@@ -267,7 +267,7 @@ def generate_html_section(section_title, section_url, feed_url, max_news_items):
         item_description = clean_up_html_string(item.get("description", ""))
         generated_html += f"            <li><a href=\"{item['link']}\" title=\"{item_description}\" target=\"_blank\"><strong>{item_title}</strong><br>{item_description}</a></li>\n"
     generated_html += "        </ul>\n"
-    return html
+    return generated_html
 
 
 def generate_index_html(max_news_items):
