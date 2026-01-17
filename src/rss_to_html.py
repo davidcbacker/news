@@ -172,7 +172,7 @@ def clean_up_html_string(html_string: str) -> str:
     html_string = html_string.replace("&", "&amp;")
     html_string = html_string.rsplit(" (.gov)", 1)[0]
     html_string_lines = [line.strip() for line in html_string.splitlines() if line.strip()]
-    html_string = "\n".join(cleaned_lines)
+    html_string = "\n".join(html_string_lines)
     return html_string
 
 
