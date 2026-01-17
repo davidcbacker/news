@@ -23,7 +23,7 @@ def parse_rss_feed(url: str):
     context.verify_mode = ssl.CERT_REQUIRED
     handlers = [urllib.request.HTTPSHandler(context=context)]
     try:
-        print(f"Fetching items from {os.path.dirname(url)}")
+        print(f"Fetching items from {os.path.dirname(url.replace("https://", ""))}")
         feed = feedparser.parse(url, handlers=handlers)
     except http.client.RemoteDisconnected as e:
         print(f"Error: RemoteDisconnected with {url}")
@@ -40,7 +40,7 @@ def parse_rss_feed(url: str):
         # Google News formats titles like "Headline - Source"
         entry_title_rsplit = entry_title.rsplit(" - ", 1)
         if len(entry_title_rsplit) == 2:
-            entry_title_cleaned = f"{entry_title_rsplit[0]} [{entry_title_rsplit[1]}]"
+            entry_title_cleaned = f"{entry_title_rsplit[0]} [{clean_up_html_string(entry_title_rsplit[1])}]"
         else:
             entry_title_cleaned = entry_title
         items.append({
@@ -107,7 +107,9 @@ def generate_html_base(title: str):
     <meta charset=\"UTF-8\">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{title}</title>
+    <script src=\"script.js\"></script>
     <link rel=\"stylesheet\" href=\"style.css\">
+    <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css\" integrity=\"sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==\" crossorigin=\"anonymous\" referrerpolicy=\"no-referrer\">
 </head>
 <body>\n"""
     return html_base
@@ -144,13 +146,16 @@ def generate_top_nav_bar(current_page: str):
         ("security.html", "Security"),
         ("technology.html", "Technology")
     ]
-    nav_bar = "        <ul class=\"navbar\">\n"
+    nav_bar = """        <div class=\"navbar\">
+            <a class=\"icon\" href=\"javascript:void(0);\" onclick=\"myFunction()\">
+                <i class=\"fa fa-bars\"></i>
+            </a>\n"""
     for page_file, page_name in pages:
         if page_file == current_page:
-            nav_bar += f"            <li class=\"active\"><a href=\"{page_file}\">{page_name}</a></li>\n"
+            nav_bar += f"            <div class=\"navbar-link\" id=\"active-navbar-link\"><a href=\"{page_file}\">{page_name}</a></div>\n"
         else:
-            nav_bar += f"            <li><a href=\"{page_file}\">{page_name}</a></li>\n"
-    nav_bar += "        </ul>\n"
+            nav_bar += f"            <div class=\"navbar-link\"><a href=\"{page_file}\">{page_name}</a></div>\n"
+    nav_bar += "        </div>\n"
     return nav_bar
 
 
@@ -164,6 +169,7 @@ def clean_up_html_string(html_string: str) -> str:
     """
     html_string = html_string.replace('"', "'")
     html_string = html_string.replace("&", "&amp;")
+    html_string = html_string.rsplit(" (.gov)", 1)[0]
     return html_string
 
 
@@ -577,6 +583,7 @@ def generate_news_pages():
     max_news_items_small = 10
     max_news_items_big = 30
     os.makedirs("output", exist_ok=True)
+    shutil.copy("assets/script.js", "output/script.js")
     shutil.copy("assets/style.css", "output/style.css")
     generate_index_page(max_news_items=max_news_items_big)
     generate_us_news_page(max_news_items=max_news_items)

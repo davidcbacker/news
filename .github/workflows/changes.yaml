@@ -5,6 +5,9 @@ on :
     branches: master
   pull_request:
     branches: master
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
 
 jobs:
   composer:
@@ -74,4 +77,3 @@ jobs:
     permissions:
       contents: write
     uses: ./.github/workflows/website_deploy.yaml
-
