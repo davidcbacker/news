@@ -2,6 +2,7 @@
 This module fetches news from various RSS feeds and generates HTML pages for different news categories.
 It includes functions for parsing RSS feeds, extracting secondary sources, and building HTML content for news pages.
 """
+import html
 import http
 import os
 import shutil
@@ -168,8 +169,8 @@ def clean_up_html_string(html_string: str) -> str:
         str: The cleaned-up HTML string.
     """
     html_string = html_string.replace('"', "'")
-    html_string = html_string.replace("&", "&amp;")
     html_string = html_string.rsplit(" (.gov)", 1)[0]
+    html_string = html.unescape(html_string)
     html_string_stripped_lines = [line.strip() for line in html_string.splitlines() if line.strip()]
     html_string = "\n".join(html_string_stripped_lines)
     return html_string
