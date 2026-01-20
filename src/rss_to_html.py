@@ -229,25 +229,6 @@ def generate_reuters_html_section(section_title, section_url, feed_url, max_news
     return reuters_html
 
 
-def generate_reddit_technology_html_section(section_title, section_url, feed_url, max_news_items):
-    """
-    Generate the HTML section for Reddit Technology news items.
-    Args:
-        section_title (str): The title of the Reddit Technology news section.
-        section_url (str): The URL of the Reddit Technology news source.
-        feed_url (str): The URL of the rss feed.
-        max_news_items (int): Maximum number of news items to display.
-    """
-    reddit_technology_items, reddit_technology_last_updated = parse_rss_feed(feed_url)
-    reddit_technology_html = f"""        <h2 id="{section_title.lower().replace(' ', '-').replace('.', '')}"><a href="{section_url}">{section_title}</a></h2>
-        <p class="last-updated">{reddit_technology_last_updated if reddit_technology_last_updated else ''}</p>
-        <ul class=\"news-list\">\n"""
-    for item in reddit_technology_items[:max_news_items]:
-        reddit_technology_html += f"            <li><a href=\"{item['link']}\" target=\"_blank\"><strong>{item['title']}</strong></a></li>\n"
-    reddit_technology_html += "        </ul>\n"
-    return reddit_technology_html
-
-
 def generate_html_section(section_title, section_url, feed_url, max_news_items):
     """
     Generate the HTML section for a generic news source.
@@ -463,25 +444,25 @@ def generate_technology_html(max_news_items):
     """
     google_news_technology_rss_url = "https://news.google.com/rss/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGRqTVhZU0FtVnVHZ0pWVXlnQVAB"
     mit_tech_review_rss_url = "https://www.technologyreview.com/feed"
-    reddit_technology_rss_url = "https://www.reddit.com/r/technology/top/.rss?t=month"
+    github_engineering_rss_url = "https://githubengineering.com/atom.xml"
     technology_html = generate_html_base("Technology")
     technology_html += generate_top_nav_bar("technology.html")
-    technology_html += generate_google_news_html_section(
-        section_title="Google News - Technology",
-        section_url="https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGRqTVhZU0FtVnVHZ0pWVXlnQVAB",
-        feed_url=google_news_technology_rss_url,
-        max_news_items=max_news_items
-    )
+    # technology_html += generate_google_news_html_section(
+    #     section_title="Google News - Technology",
+    #     section_url="https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGRqTVhZU0FtVnVHZ0pWVXlnQVAB",
+    #     feed_url=google_news_technology_rss_url,
+    #     max_news_items=max_news_items
+    # )
+    # technology_html += generate_html_section(
+    #     section_title="MIT Technology Review",
+    #     section_url="https://www.technologyreview.com/",
+    #     feed_url=mit_tech_review_rss_url,
+    #     max_news_items=max_news_items
+    # )
     technology_html += generate_html_section(
-        section_title="MIT Technology Review",
-        section_url="https://www.technologyreview.com/",
-        feed_url=mit_tech_review_rss_url,
-        max_news_items=max_news_items
-    )
-    technology_html += generate_reddit_technology_html_section(
-        section_title="Reddit Technology",
-        section_url="https://www.reddit.com/r/technology/",
-        feed_url=reddit_technology_rss_url,
+        section_title="GitHub Engineering",
+        section_url="https://github.blog/engineering/",
+        feed_url=github_engineering_rss_url,
         max_news_items=max_news_items
     )
     technology_html += generate_html_closing()
@@ -582,11 +563,11 @@ def generate_news_pages():
     os.makedirs("output", exist_ok=True)
     shutil.copy("assets/script.js", "output/script.js")
     shutil.copy("assets/style.css", "output/style.css")
-    generate_index_page(max_news_items=max_news_items_big)
-    generate_us_news_page(max_news_items=max_news_items)
-    generate_world_news_page(max_news_items=max_news_items_big)
-    generate_business_page(max_news_items=max_news_items_small)
-    generate_security_page(max_news_items=max_news_items_small)
+    # generate_index_page(max_news_items=max_news_items_big)
+    # generate_us_news_page(max_news_items=max_news_items)
+    # generate_world_news_page(max_news_items=max_news_items_big)
+    # generate_business_page(max_news_items=max_news_items_small)
+    # generate_security_page(max_news_items=max_news_items_small)
     generate_technology_page(max_news_items=max_news_items)
 
 if __name__ == "__main__":
