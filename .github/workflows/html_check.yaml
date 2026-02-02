@@ -26,7 +26,13 @@ jobs:
           npm install -g html-validate
       - name: Run html-validate
         run: |
-          html-validate  \
+          for file in output/*.html; do
+            html-validate  \
               --preset recommended \
               --rule wcag/h30:off \
-              output/*.html
+              output/*.html || {
+              echo "ERROR: HTML validation failed on ${file}"
+              cat "${file}"
+              exit 1
+            }
+          done
