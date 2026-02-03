@@ -36,6 +36,7 @@ def parse_rss_feed(url: str):
     print(f"Fetched {len(feed.entries)} items from {feed_title}")
     items = []
     for entry in feed.entries:
+        print(entry)
         entry_title = entry.get("title", "No title")
         entry_title = entry_title.replace("<strong>", "").replace("</strong>", "")
         # Google News formats titles like "Headline - Source"
@@ -48,7 +49,7 @@ def parse_rss_feed(url: str):
             "title": entry_title_cleaned,
             "description": entry.get("description", ""),
             "link": entry.get("link", ""),
-            "pubdate": entry.get("pubdate", "")
+            "published": entry.get("published", "")
         })
     return items, feed.feed.get("updated", None)
 
@@ -263,7 +264,7 @@ def generate_no_description_html_section(section_title, section_url, feed_url, m
         <p class="last-updated">{reddit_technology_last_updated if reddit_technology_last_updated else ''}</p>
         <ul class=\"news-list\">\n"""
     for item in reddit_technology_items[:max_news_items]:
-        reddit_technology_html += f"            <li><a href=\"{item['link']}\" target=\"_blank\"><strong>{item['title']}</strong><br>{item['pubdate']}</a></li>\n"
+        reddit_technology_html += f"            <li><a href=\"{item['link']}\" target=\"_blank\"><strong>{item['title']}</strong><br>{item['published']}</a></li>\n"
     reddit_technology_html += "        </ul>\n"
     return reddit_technology_html
 
