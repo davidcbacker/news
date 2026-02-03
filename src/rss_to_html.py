@@ -453,7 +453,7 @@ def generate_security_html(max_news_items):
     security_html += generate_html_section(
         section_title="Troy Hunt Breaches",
         section_url="https://troyhunt.com/",
-        feed_url=troy_hunt_rss_url,
+        feed_url=troy_hunt_breaches_rss_url,
         max_news_items=max_news_items
     )
     security_html += generate_html_closing()
