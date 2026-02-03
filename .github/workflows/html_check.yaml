@@ -30,7 +30,7 @@ jobs:
             html-validate  \
               --preset recommended \
               --rule wcag/h30:off \
-              output/*.html || {
+              "output/${file}.html" || {
               echo "ERROR: HTML validation failed on ${file}"
               cat "${file}"
               exit 1
