@@ -48,7 +48,7 @@ def parse_rss_feed(url: str):
             "title": entry_title_cleaned,
             "description": entry.get("description", ""),
             "link": entry.get("link", ""),
-            "pubdate": entry.get("pubDate", "")
+            "pubdate": entry.get("pubdate", "")
         })
     return items, feed.feed.get("updated", None)
 
