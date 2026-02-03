@@ -454,7 +454,7 @@ def generate_security_html(max_news_items):
         section_title="Troy Hunt Breaches",
         section_url="https://troyhunt.com/",
         feed_url=troy_hunt_breaches_rss_url,
-        max_news_items=max_news_items
+        max_news_items=24
     )
     security_html += generate_html_closing()
     return security_html
@@ -489,7 +489,7 @@ def generate_technology_html(max_news_items):
         section_title="Reddit Technology",
         section_url="https://www.reddit.com/r/technology/",
         feed_url=reddit_technology_rss_url,
-        max_news_items=24
+        max_news_items=max_news_items
     )
     technology_html += generate_html_closing()
     return technology_html
