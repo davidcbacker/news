@@ -48,6 +48,7 @@ def parse_rss_feed(url: str):
             "title": entry_title_cleaned,
             "description": entry.get("description", ""),
             "link": entry.get("link", ""),
+            "pubDate": entry.get("pubDate", "")
         })
     return items, feed.feed.get("updated", None)
 
@@ -244,6 +245,25 @@ def generate_reddit_technology_html_section(section_title, section_url, feed_url
         <ul class=\"news-list\">\n"""
     for item in reddit_technology_items[:max_news_items]:
         reddit_technology_html += f"            <li><a href=\"{item['link']}\" target=\"_blank\"><strong>{item['title']}</strong></a></li>\n"
+    reddit_technology_html += "        </ul>\n"
+    return reddit_technology_html
+
+
+def generate_no_description_html_section(section_title, section_url, feed_url, max_news_items):
+    """
+    Generate the HTML section for Reddit Technology news items.
+    Args:
+        section_title (str): The title of the Reddit Technology news section.
+        section_url (str): The URL of the Reddit Technology news source.
+        feed_url (str): The URL of the rss feed.
+        max_news_items (int): Maximum number of news items to display.
+    """
+    reddit_technology_items, reddit_technology_last_updated = parse_rss_feed(feed_url)
+    reddit_technology_html = f"""        <h2 id="{section_title.lower().replace(' ', '-').replace('.', '')}"><a href="{section_url}">{section_title}</a></h2>
+        <p class="last-updated">{reddit_technology_last_updated if reddit_technology_last_updated else ''}</p>
+        <ul class=\"news-list\">\n"""
+    for item in reddit_technology_items[:max_news_items]:
+        reddit_technology_html += f"            <li><a href=\"{item['link']}\" target=\"_blank\"><strong>{item['title']}</strong><br>{item['pubDate']}</a></li>\n"
     reddit_technology_html += "        </ul>\n"
     return reddit_technology_html
 
