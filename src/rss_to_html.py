@@ -36,7 +36,6 @@ def parse_rss_feed(url: str):
     print(f"Fetched {len(feed.entries)} items from {feed_title}")
     items = []
     for entry in feed.entries:
-        print(entry)
         entry_title = entry.get("title", "No title")
         entry_title = entry_title.replace("<strong>", "").replace("</strong>", "")
         # Google News formats titles like "Headline - Source"
