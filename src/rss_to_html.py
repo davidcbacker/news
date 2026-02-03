@@ -423,7 +423,7 @@ def generate_security_html(max_news_items):
     talkback_technical_rss_url = "https://talkback.sh/resources/feed/tech/"
     hacker_news_rss_url = "https://feeds.feedburner.com/TheHackersNews"
     sans_internet_storm_center_rss_url = "https://isc.sans.edu/rssfeed.xml"
-    troy_hunt_rss_url = "https://www.troyhunt.com/rss/"
+    troy_hunt_breaches_rss_url = "http://feeds.feedburner.com/HaveIBeenPwnedLatestBreaches?ref=troyhunt.com"
     security_html = generate_html_base("Security")
     security_html += generate_top_nav_bar("security.html")
     security_html += generate_html_section(
@@ -451,7 +451,7 @@ def generate_security_html(max_news_items):
         max_news_items=max_news_items
     )
     security_html += generate_html_section(
-        section_title="Troy Hunt",
+        section_title="Troy Hunt Breaches",
         section_url="https://troyhunt.com/",
         feed_url=troy_hunt_rss_url,
         max_news_items=max_news_items
