@@ -1,6 +1,12 @@
 body {
   align-items: center;
-  background-color: white;
+  background: linear-gradient(
+to bottom,
+    black 0,
+    black calc(3em + 20px),
+    white calc(3em + 20px),
+    white 100%
+  );
   display: flex;
   flex-direction: column;
   font-family: Arial, sans-serif;
@@ -10,7 +16,6 @@ body {
 
 h2 {
   font-size: 2.5em;
-  margin-bottom: 0;
 }
 
 h2 a {
@@ -122,6 +127,10 @@ ul.news-list li a:hover {
 }
 
 @media screen and (max-width: 800px) {
+  body {
+    background: white;
+  }
+
   div.navbar, ul.news-list {
     display: block;
     width: 100%;
