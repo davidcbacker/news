@@ -142,8 +142,8 @@ def generate_top_nav_bar(current_page: str):
     """
     pages = [
         ("index.html", "Top News"),
-        ("us.html", "U.S. News"),
-        ("world.html", "World News"),
+        ("us.html", "United States"),
+        ("world.html", "World"),
         ("business.html", "Business"),
         ("security.html", "Security"),
         ("technology.html", "Technology")
@@ -285,7 +285,7 @@ def generate_index_html(max_news_items):
     index_html = generate_html_base("Top News")
     index_html += generate_top_nav_bar("index.html")
     index_html += generate_google_news_html_section(
-        section_title="Google News",
+        section_title="Top News",
         section_url="https://news.google.com/home?hl=en-US&gl=US&ceid=US:en",
         feed_url=google_news_rss_url,
         max_news_items=max_news_items
@@ -312,10 +312,10 @@ def generate_us_news_html(max_news_items):
     fox_weather_rss_url = "https://moxie.foxweather.com/google-publisher/latest.xml"
     cnbc_us_rss_url = "https://www.cnbc.com/id/15837362/device/rss/rss.html"
     cnn_us_rss_url = "http://rss.cnn.com/rss/cnn_us.rss"
-    us_news_html = generate_html_base("U.S. News")
+    us_news_html = generate_html_base("United States")
     us_news_html += generate_top_nav_bar("us.html")
     us_news_html += generate_google_news_html_section(
-        section_title="Google News - U.S.",
+        section_title="United States",
         section_url="https://news.google.com/topics/CAAqIggKIhxDQkFTRHdvSkwyMHZNRGxqTjNjd0VnSmxiaWdBUAE",
         feed_url=google_news_us_rss_url,
         max_news_items=max_news_items
@@ -327,13 +327,13 @@ def generate_us_news_html(max_news_items):
         max_news_items=max_news_items
     )
     us_news_html += generate_html_section(
-        section_title="CNBC U.S.",
+        section_title="CNBC",
         section_url="https://www.cnbc.com/us-news/",
         feed_url=cnbc_us_rss_url,
         max_news_items=max_news_items
     )
     us_news_html += generate_html_section(
-        section_title="CNN U.S.",
+        section_title="CNN",
         section_url="https://www.cnn.com/us",
         feed_url=cnn_us_rss_url,
         max_news_items=max_news_items
@@ -355,7 +355,7 @@ def generate_world_news_html(max_news_items):
     world_news_html += generate_top_nav_bar("world.html")
     bbc_world_rss_url = "https://feeds.bbci.co.uk/news/world/rss.xml"
     world_news_html += generate_google_news_html_section(
-        section_title="Google News - World",
+        section_title="World",
         section_url="https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGx1YlY4U0FtVnVHZ0pWVXlnQVAB",
         feed_url=google_news_world_rss_url,
         max_news_items=max_news_items
@@ -385,7 +385,7 @@ def generate_business_html(max_news_items):
     business_html = generate_html_base("Business")
     business_html += generate_top_nav_bar("business.html")
     business_html += generate_google_news_html_section(
-        section_title="Google News - Business",
+        section_title="Business",
         section_url="https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGx6TVdZU0FtVnVHZ0pWVXlnQVAB",
         feed_url=google_news_business_rss_url,
         max_news_items=max_news_items
@@ -474,7 +474,7 @@ def generate_technology_html(max_news_items):
     technology_html = generate_html_base("Technology")
     technology_html += generate_top_nav_bar("technology.html")
     technology_html += generate_google_news_html_section(
-        section_title="Google News - Technology",
+        section_title="Technology",
         section_url="https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGRqTVhZU0FtVnVHZ0pWVXlnQVAB",
         feed_url=google_news_technology_rss_url,
         max_news_items=max_news_items
@@ -515,7 +515,7 @@ def generate_index_page(max_news_items):
 
 def generate_us_news_page(max_news_items):
     """
-    Generate the U.S. News HTML page.
+    Generate the United States HTML page.
     Args:
         max_news_items (int): Maximum number of news items to display per section.
     """
