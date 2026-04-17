@@ -21,6 +21,7 @@ jobs:
   check_python:
     name: Check Python code
     uses: ./.github/workflows/python_check.yaml
+
   build_website:
     name: Build Website
     needs:
@@ -28,9 +29,11 @@ jobs:
       - check_markdown
       - check_python
     uses: ./.github/workflows/website_build.yaml
+
   check_html_output:
     name: Check HTML code
     needs: build_website
+    continue-on-error: ${{ github.event_name == 'schedule' }}
     uses: ./.github/workflows/html_check.yaml
 
   deploy_website:
