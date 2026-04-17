@@ -175,6 +175,9 @@ def clean_up_html_string(html_string: str) -> str:
     html_string = html_string.replace("<", "&lt;")
     html_string = html_string.replace(">", "&gt;")
     html_string = html_string.rsplit(" (.gov)", 1)[0]
+    html_string = html_string.rsplit(".com", 1)[0]
+    html_string = html_string.rsplit(".gov", 1)[0]
+    html_string = html_string.rsplit(".org", 1)[0]
     html_string_stripped_lines = [line.strip() for line in html_string.splitlines() if line.strip()]
     html_string = "\n".join(html_string_stripped_lines)
     return html_string
