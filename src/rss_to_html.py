@@ -39,7 +39,7 @@ def parse_rss_feed(url: str):
         entry_title = entry.get("title", "No title")
         entry_title = entry_title.replace("<strong>", "").replace("</strong>", "")
         # Google News formats titles like "Headline - Source"
-        if entry_title.endsWith(' - Rolling Stone'):
+        if entry_title.endswith(' - Rolling Stone'):
             continue
         entry_title_rsplit = entry_title.rsplit(" - ", 1)
         if len(entry_title_rsplit) == 2:
