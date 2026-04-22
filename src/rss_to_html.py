@@ -91,7 +91,7 @@ def extract_secondary_sources_from_description(description: str):
             continue
         title = clean_up_html_string(title_publisher_split[0])
         publisher = clean_up_html_string(title_publisher_split[1])
-        if publisher = 'Rolling Stone':
+        if publisher == 'Rolling Stone':
             continue
         item_secondary_sources_anchors.append(
             f'<a href="{url}" title="{title}" target="_blank">[{publisher}]</a>'
