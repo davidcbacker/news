@@ -249,14 +249,15 @@ def generate_no_description_html_section(section_title, section_url, feed_url, m
         feed_url (str): The URL of the rss feed.
         max_news_items (int): Maximum number of news items to display.
     """
-    reddit_technology_items, reddit_technology_last_updated = parse_rss_feed(feed_url)
-    reddit_technology_html = f"""        <h2 id="{section_title.lower().replace(' ', '-').replace('.', '')}"><a href="{section_url}">{section_title}</a></h2>
+    news_items, news_last_updated = parse_rss_feed(feed_url)
+    generated_html = f"""        <h2 id="{section_title.lower().replace(' ', '-').replace('.', '')}"><a href="{section_url}">{section_title}</a></h2>
         <p class="last-updated">{reddit_technology_last_updated if reddit_technology_last_updated else ''}</p>
         <ul class=\"news-list\">\n"""
     for item in reddit_technology_items[:max_news_items]:
-        reddit_technology_html += f"            <li><a href=\"{item['link']}\" target=\"_blank\"><strong>{item['title']}</strong><br>{item['published']}</a></li>\n"
-    reddit_technology_html += "        </ul>\n"
-    return reddit_technology_html
+        item_title = clean_up_html_string(item.get("title", ""))
+        generated_html += f"            <li><a href=\"{item['link']}\" title=\"{item_title}\" target=\"_blank\"><strong>{item_title}</strong><br>{item['published']}</a></li>\n"
+    generated_html += "        </ul>\n"
+    return generated_html
 
 
 def generate_html_section(section_title, section_url, feed_url, max_news_items):
