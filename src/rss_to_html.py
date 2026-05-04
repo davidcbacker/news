@@ -251,9 +251,9 @@ def generate_no_description_html_section(section_title, section_url, feed_url, m
     """
     news_items, news_last_updated = parse_rss_feed(feed_url)
     generated_html = f"""        <h2 id="{section_title.lower().replace(' ', '-').replace('.', '')}"><a href="{section_url}">{section_title}</a></h2>
-        <p class="last-updated">{reddit_technology_last_updated if reddit_technology_last_updated else ''}</p>
+        <p class="last-updated">{news_last_updated if news_last_updated else ''}</p>
         <ul class=\"news-list\">\n"""
-    for item in reddit_technology_items[:max_news_items]:
+    for item in news_items[:max_news_items]:
         item_title = clean_up_html_string(item.get("title", ""))
         generated_html += f"            <li><a href=\"{item['link']}\" title=\"{item_title}\" target=\"_blank\"><strong>{item_title}</strong><br>{item['published']}</a></li>\n"
     generated_html += "        </ul>\n"
