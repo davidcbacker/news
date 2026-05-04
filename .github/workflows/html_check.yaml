@@ -25,6 +25,7 @@ jobs:
         run: |
           npm install -g html-validate
       - name: Run html-validate
+        continue-on-error: ${{ github.event_name == 'schedule' }}
         run: |
           for file in output/*.html; do
             html-validate  \
